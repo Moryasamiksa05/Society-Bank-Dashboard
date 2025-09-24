@@ -291,46 +291,55 @@ export default function TransactionModule() {
           </Box>
         )}
 
-        {/* History */}
-        {tab === 3 && (
-          <Box mt={3}>
-            <Typography variant="h6" gutterBottom>
-              Transaction History
-            </Typography>
-            <Box sx={{ overflowX: "auto" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                <thead>
-                  <tr style={{ background: "#f0f0f0" }}>
-                    <th style={{ border: "1px solid #ddd", padding: "8px" }}>Txn ID</th>
-                         <th style={{ border: "1px solid #ddd", padding: "8px" }}> ID</th>
-                    <th style={{ border: "1px solid #ddd", padding: "8px" }}>Account</th>
-                    <th style={{ border: "1px solid #ddd", padding: "8px" }}>Member</th>
-                    <th style={{ border: "1px solid #ddd", padding: "8px" }}>Type</th>
-                    <th style={{ border: "1px solid #ddd", padding: "8px" }}>Mode</th>
-                    <th style={{ border: "1px solid #ddd", padding: "8px" }}>Amount</th>
-                    <th style={{ border: "1px solid #ddd", padding: "8px" }}>Narration</th>
-                    <th style={{ border: "1px solid #ddd", padding: "8px" }}>Created At</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {transactions.map((txn) => (
-                    <tr key={txn.txnId}>
-                      <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.txnId}</td>
-                      <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.memberId}</td>
-                      <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.accountId}</td>
-                      <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.memberId}</td>
-                      <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.type}</td>
-                      <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.mode}</td>
-                      <td style={{ border: "1px solid #ddd", padding: "8px" }}>₹{txn.amount}</td>
-                      <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.narration}</td>
-                      <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.createdAt}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </Box>
-          </Box>
-        )}
+      
+       {/* History */}
+{tab === 3 && (
+  <Box mt={3}>
+    <Typography variant="h6" gutterBottom>
+      Transaction History
+    </Typography>
+    <Box sx={{ overflowX: "auto" }}>
+      <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <thead>
+          <tr style={{ background: "#f0f0f0" }}>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Txn ID</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Member ID</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Account ID</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Member Name</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Type</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Mode</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Amount</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Narration</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {transactions.map((txn) => {
+          
+            const memberData = members.find((m) => m.memberId === txn.memberId);
+            return (
+              <tr key={txn.txnId}>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.txnId}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.memberId}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.accountId}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  {memberData ? memberData.name : "-"}
+                </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.type}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.mode}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>₹{txn.amount}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.narration}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.createdAt}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </Box>
+  </Box>
+)}
+
+        
       </Paper>
 
       {/* Snackbar Notification */}
