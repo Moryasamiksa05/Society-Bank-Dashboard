@@ -303,9 +303,9 @@ export default function TransactionModule() {
         <thead>
           <tr style={{ background: "#f0f0f0" }}>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>Txn ID</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Member ID</th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Account ID</th>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>Member Name</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Account ID</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Member ID</th>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>Type</th>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>Mode</th>
             <th style={{ border: "1px solid #ddd", padding: "8px" }}>Amount</th>
@@ -320,11 +320,12 @@ export default function TransactionModule() {
             return (
               <tr key={txn.txnId}>
                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.txnId}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.memberId}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.accountId}</td>
-                <td style={{ border: "1px solid #ddd", padding: "8px" }}>
+                  <td style={{ border: "1px solid #ddd", padding: "8px" }}>
                   {memberData ? memberData.name : "-"}
                 </td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.memberId}</td>
+                <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.accountId}</td>
+              
                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.type}</td>
                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>{txn.mode}</td>
                 <td style={{ border: "1px solid #ddd", padding: "8px" }}>₹{txn.amount}</td>
